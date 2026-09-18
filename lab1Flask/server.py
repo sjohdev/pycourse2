@@ -128,7 +128,7 @@ def count():
         # Return a JSON response with a message and a 500 Internal Server Error status code
         return ({"error_message": "data not defined"}, 500)
 
-@app.route(/person/<uuid:i>)
+@app.route(/person/<uuid:id>)
 def find_by_uuid(id):
     # Iterate through the 'data' list to search for a person with a matching ID
     for dict_item in data:
