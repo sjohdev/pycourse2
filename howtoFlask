@@ -1,0 +1,12 @@
+1. Make sure you have installed Flask with pip
+2. create a .py file with filename of your choice (e.g. fname.py)
+3. fill in the fname.py file according to server.py in lab1
+4. run the following command in the terminal: 
+flask --app fname --debug run
+
+The server is now running locally using port 5000 by default.
+
+5. To connect to the server open a new terminal window and run the following
+command: 
+curl -X GET -i -w '\n' localhost:5000
+
