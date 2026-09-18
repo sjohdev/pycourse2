@@ -117,7 +117,7 @@ def name_search():
             
         return ({'error_message': 'Person not found'}, 404)
 
-@app.route("/count"):
+@app.route("/count")
 def count():
     try:
         # Attempt to return a JSON response with the count of items in 'data'
@@ -128,7 +128,7 @@ def count():
         # Return a JSON response with a message and a 500 Internal Server Error status code
         return ({"error_message": "data not defined"}, 500)
 
-@app.route(/person/<uuid:id>)
+@app.route("/person/<uuid:id>")
 def find_by_uuid(id):
     # Iterate through the 'data' list to search for a person with a matching ID
     for dict_item in data:
@@ -151,3 +151,30 @@ def delete_by_uuid(id):
             return ({"message": f"Person with ID {id} deleted"}, 200)
     # If no matching person is found, return a JSON response with a message and a 404 Not Found status code
     return ({"message": "person not found"}, 404)
+
+@app.route("/person", methods=['POST'])
+def add_by_uuid():
+    new_item = request.json
+    if not new_item:
+        return ({"message": "Invalid input parameter"}, 422)
+    # code to validate new_item ommited
+    try:
+        data.append(new_item)
+    except NameError:
+        return ({"message": "data not defined"}, 500)
+
+    return ({"message": f"{new_item['id']}"}, 200)
+
+@app.errorhandler(404)
+def api_not_found(error):
+    # This function is a custom error handler for 404 Not Found errors
+    # It is triggered whenever a 404 error occurs within the Flask application
+    return ({"myMessage": "API not found"}, 404)
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    return {"mineMessage": str(e)}, 500
+
+@app.route("/test500")
+def test500():
+    raise Exception("Forced exception for testing")
