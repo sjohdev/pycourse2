@@ -1,9 +1,9 @@
-''' Unit tests for SemanticAnalysis package'''
-from SentimentAnalysis.sentiment_analysis import sentiment_analyzer
+'''Unit tests for SemanticAnalysis package'''
 import unittest
+from SentimentAnalysis.sentiment_analysis import sentiment_analyzer
 
 class TestSentimentAnalyzer(unittest.TestCase):
-    
+    '''Class docstring here'''
     def test_sentiment_analyzer(self):
         # Test case for positive sentiment
         result_1 = sentiment_analyzer('I love working with Python')
@@ -14,7 +14,5 @@ class TestSentimentAnalyzer(unittest.TestCase):
         # Test case for neutral sentiment
         result_3 = sentiment_analyzer('I am neutral on Python')
         self.assertEqual(result_3['label'], 'SENT_NEUTRAL')
-
-# Run tests: 
-unittest.main() 
-        
+# Run tests:
+unittest.main()
